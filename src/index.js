@@ -89,7 +89,6 @@ function decode(expr) {
         let valueMorseBuleanFull = morseBuleanFull[j];
         if (valueSlicedExpr == valueMorseBuleanFull) {
           signsDecode = signsDecode + morseSignFull[j];
-          // break;
         }        
     }      
   }
