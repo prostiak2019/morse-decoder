@@ -41,11 +41,10 @@ const MORSE_TABLE = {
  * Decodes encoded data.
  *
  * @param {string} expr - encoded string
- * @return {string} signsDecode - decoded string
+ * @return {string} - decoded string
  */
 
 function decode(expr) {
-
 
   // get all the codes of morse object
   const morsePoint = Object.keys(MORSE_TABLE);
@@ -54,18 +53,18 @@ function decode(expr) {
   const morseSignFull = Object.values(MORSE_TABLE);
 
   let i = 0;
-  let morseBulean = [];
+  let morseBoolean = [];
 
    // loop all the morse codes to convert '.' to '10' and '-' to '11'
   for (var key in MORSE_TABLE) {
 
-    morseBulean[i] = '';
+    morseBoolean[i] = '';
 
     for (let j = 0; j < morsePoint[i].length ; j++) { 
 
       if (morsePoint[i].slice(j, j + 1) === '.') {
-        morseBulean[i] = morseBulean[i] + '10';
-        } else { morseBulean[i] = morseBulean[i] + '11';
+        morseBoolean[i] = morseBoolean[i] + '10';
+        } else { morseBoolean[i] = morseBoolean[i] + '11';
       }
     }
 
@@ -74,8 +73,8 @@ function decode(expr) {
   
   let zero ='0';
 
-  // loop to add '0' to the beginning of an element if the number of signs < 10
-  let morseBuleanFull = morseBulean.map(function(sign) {
+  // add '0' to the beginning of an element if the number of signs < 10
+  let morseBooleanFull = morseBoolean.map(function(sign) {
     while (sign.length !=10) {
       sign = zero + sign;
     }
@@ -84,7 +83,7 @@ function decode(expr) {
   });
     
   // add the element '**********' to the end of the array, which matches the value ' '
-  morseBuleanFull.push('**********');
+  morseBooleanFull.push('**********');
 
   // add the element ' ' to the end of the array, which matches the value '**********'
   morseSignFull.push(' ');
@@ -97,10 +96,10 @@ function decode(expr) {
 
   // decoding cycle from zeros and ones to alphabet and numbers
   for (let i = 0; i < slicedExpr.length; i++) {
-    for (let j = 0; j < morseBuleanFull.length; j++) {
+    for (let j = 0; j < morseBooleanFull.length; j++) {
       let valueSlicedExpr = slicedExpr[i];
-      let valueMorseBuleanFull = morseBuleanFull[j];
-      if (valueSlicedExpr == valueMorseBuleanFull) {
+      let valueMorseBooleanFull = morseBooleanFull[j];
+      if (valueSlicedExpr == valueMorseBooleanFull) {
         signsDecode = signsDecode + morseSignFull[j];
       }        
     }      
